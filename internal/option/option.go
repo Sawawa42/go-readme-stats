@@ -10,11 +10,11 @@ import (
 
 type Options struct {
 	Exclude string // -x or --exclude
-	Version bool // -v or --version
-	Help    bool // -h or --help
+	Version bool   // -v or --version
+	Help    bool   // -h or --help
 }
 
-var flagUsages = map[string]string {
+var flagUsages = map[string]string{
 	"x": "Exclude files matching the pattern",
 	"v": "Show version information",
 	"h": "Show help information",
@@ -55,29 +55,28 @@ func printFlags(flagSet *flag.FlagSet) {
 	flagMap := make(map[string]*flagInfo)
 
 	flagSet.VisitAll(func(f *flag.Flag) {
-        key := f.Usage
-        if fi, exists := flagMap[key]; exists {
-            fi.names = append(fi.names, "-" + f.Name)
-        } else {
-            flagMap[key] = &flagInfo{
-                names: []string{"-" + f.Name},
-                usage: flagUsages[f.Usage],
-            }
-        }
-    })
+		key := f.Usage
+		if fi, exists := flagMap[key]; exists {
+			fi.names = append(fi.names, "-"+f.Name)
+		} else {
+			flagMap[key] = &flagInfo{
+				names: []string{"-" + f.Name},
+				usage: flagUsages[f.Usage],
+			}
+		}
+	})
 
-    var keys []string
-    for k := range flagMap {
-        keys = append(keys, k)
-    }
-    sort.Strings(keys)
+	var keys []string
+	for k := range flagMap {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
 
-    for _, key := range keys {
-        fi := flagMap[key]
+	for _, key := range keys {
+		fi := flagMap[key]
 		sort.Slice(fi.names, func(i, j int) bool {
-            return len(fi.names[i]) < len(fi.names[j])
-        })
-        fmt.Fprintf(os.Stderr, "  %s\n        %s\n", strings.Join(fi.names, ", "), fi.usage)
-    }
+			return len(fi.names[i]) < len(fi.names[j])
+		})
+		fmt.Fprintf(os.Stderr, "  %s\n        %s\n", strings.Join(fi.names, ", "), fi.usage)
+	}
 }
-
