@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/Sawawa42/go-readme-stats/internal/gqlclient"
+	"github.com/Sawawa42/go-readme-stats/internal/github"
 	"github.com/Sawawa42/go-readme-stats/internal/option"
 	"github.com/joho/godotenv"
 	"os"
@@ -22,21 +23,14 @@ func main() {
 	}
 	fmt.Printf("Parsed Options: %+v\n", opts)
 
-	// クエリ例
 	client := gqlclient.NewClient("https://api.github.com/graphql")
-	query := `
-	{
-		viewer {
-			login
-		}
-	}`
-	req, err := client.NewRequest(query)
+	req, err := client.NewRequest(github.RepositoriesQuery)
 	if err != nil {
 		fmt.Println("Error creating request:", err)
 		os.Exit(1)
 	}
 
-	var respData map[string]interface{}
+	var respData github.RepositoriesResponse
 	err = client.Do(req, &respData)
 	if err != nil {
 		fmt.Println("Error executing request:", err)
