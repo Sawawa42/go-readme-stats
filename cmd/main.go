@@ -37,5 +37,31 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("Response Data: %+v\n", respData)
+	type LanguageStats struct {
+		Name       string `json:"name"`
+		TotalSize  int    `json:"totalSize"`
+		Color      string `json:"color"`
+	}
+	statsmap := make(map[string]*LanguageStats)
+
+	for _, repo := range respData.Viewer.Repositories.Nodes {
+		for _, langEdge := range repo.Languages.Edges {
+			langName := langEdge.Node.Name
+			if _, exists := statsmap[langName]; !exists {
+				statsmap[langName] = &LanguageStats{
+					Name:      langName,
+					TotalSize: 0,
+					Color:     langEdge.Node.Color,
+				}
+			}
+			statsmap[langName].TotalSize += langEdge.Size
+		}
+	}
+
+	var stats []LanguageStats
+	for _, stat := range statsmap {
+		stats = append(stats, *stat)
+	}
+
+	fmt.Printf("Language Stats: %+v\n", stats)
 }
