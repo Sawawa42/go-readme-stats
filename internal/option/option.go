@@ -10,13 +10,13 @@ import (
 
 type Options struct {
 	Exclude string // -x or --exclude
-	Version bool   // -v or --version
+	ExcludePatterns []string // -x or --excludeで指定されたパターンをカンマで分割して格納
 	Help    bool   // -h or --help
+	FlagSet *flag.FlagSet
 }
 
 var flagUsages = map[string]string{
 	"x": "Exclude files matching the pattern",
-	"v": "Show version information",
 	"h": "Show help information",
 }
 
@@ -27,8 +27,6 @@ func Parse(args []string) (*Options, error) {
 
 	flagSet.StringVar(&opts.Exclude, "x", "", "x")
 	flagSet.StringVar(&opts.Exclude, "exclude", "", "x")
-	flagSet.BoolVar(&opts.Version, "v", false, "v")
-	flagSet.BoolVar(&opts.Version, "version", false, "v")
 	flagSet.BoolVar(&opts.Help, "h", false, "h")
 	flagSet.BoolVar(&opts.Help, "help", false, "h")
 
@@ -42,6 +40,11 @@ func Parse(args []string) (*Options, error) {
 		flag.Usage()
 		return nil, err
 	}
+
+	if opts.Exclude != "" {
+		opts.ExcludePatterns = strings.Split(opts.Exclude, ",")
+	}
+	opts.FlagSet = flagSet
 
 	return opts, nil
 }

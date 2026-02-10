@@ -7,6 +7,7 @@ import (
 	"github.com/Sawawa42/go-readme-stats/internal/option"
 	"github.com/joho/godotenv"
 	"os"
+	"slices"
 )
 
 func main() {
@@ -21,7 +22,11 @@ func main() {
 		fmt.Println("Error parsing options:", err)
 		os.Exit(1)
 	}
-	fmt.Printf("Parsed Options: %+v\n", opts)
+
+	if opts.Help {
+		opts.FlagSet.Usage()
+		return
+	}
 
 	client := gqlclient.NewClient("https://api.github.com/graphql")
 	req, err := client.NewRequest(github.RepositoriesQuery)
@@ -60,6 +65,9 @@ func main() {
 
 	var stats []LanguageStats
 	for _, stat := range statsmap {
+		if slices.Contains(opts.ExcludePatterns, stat.Name) {
+			continue
+		}
 		stats = append(stats, *stat)
 	}
 
