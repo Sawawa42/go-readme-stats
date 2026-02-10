@@ -19,7 +19,7 @@ jobs:
       
       - name: Generate Stats
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.STATS_GITHUB_TOKEN }}
         run: |
           go install github.com/syamasaw/go-readme-stats@latest
           go run ./cmd/main.go -x=Kotlin,PHP,HTML,CSS,PLpgSQL > stats.txt
