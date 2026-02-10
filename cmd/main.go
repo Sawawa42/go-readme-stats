@@ -20,11 +20,7 @@ type LanguageStats struct {
 }
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		fmt.Println("Error loading .env file:", err)
-		os.Exit(1)
-	}
+	_ = godotenv.Load()
 
 	opts, err := option.Parse(os.Args)
 	if err != nil {
