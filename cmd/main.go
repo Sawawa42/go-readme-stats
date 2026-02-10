@@ -75,10 +75,10 @@ func main() {
 		stats = append(stats, *stat)
 	}
 
-	fmt.Println(ForatLanguageStats(stats))
+	fmt.Println(FormatLanguageStats(stats))
 }
 
-func ForatLanguageStats(stats []LanguageStats) string {
+func FormatLanguageStats(stats []LanguageStats) string {
 	var total int
 	for _, stat := range stats {
 		total += stat.TotalSize
