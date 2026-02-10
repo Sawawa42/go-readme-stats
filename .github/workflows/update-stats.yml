@@ -21,6 +21,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.STATS_GITHUB_TOKEN }}
         run: |
-          go install github.com/Sawawa42/go-readme-stats@latest
           go run ./cmd/main.go -x=Kotlin,PHP,HTML,CSS,PLpgSQL > stats.txt
           cat stats.txt
