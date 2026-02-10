@@ -9,10 +9,10 @@ import (
 )
 
 type Options struct {
-	Exclude string // -x or --exclude
+	Exclude         string   // -x or --exclude
 	ExcludePatterns []string // -x or --excludeで指定されたパターンをカンマで分割して格納
-	Help    bool   // -h or --help
-	FlagSet *flag.FlagSet
+	Help            bool     // -h or --help
+	FlagSet         *flag.FlagSet
 }
 
 var flagUsages = map[string]string{

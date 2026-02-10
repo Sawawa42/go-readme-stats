@@ -2,13 +2,22 @@ package main
 
 import (
 	"fmt"
-	"github.com/Sawawa42/go-readme-stats/internal/gqlclient"
-	"github.com/Sawawa42/go-readme-stats/internal/github"
-	"github.com/Sawawa42/go-readme-stats/internal/option"
-	"github.com/joho/godotenv"
 	"os"
 	"slices"
+	"sort"
+
+	"github.com/Sawawa42/go-readme-stats/internal/github"
+	"github.com/Sawawa42/go-readme-stats/internal/gqlclient"
+	"github.com/Sawawa42/go-readme-stats/internal/option"
+	"github.com/joho/godotenv"
+	"strings"
 )
+
+type LanguageStats struct {
+	Name      string `json:"name"`
+	TotalSize int    `json:"totalSize"`
+	Color     string `json:"color"`
+}
 
 func main() {
 	err := godotenv.Load()
@@ -42,11 +51,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	type LanguageStats struct {
-		Name       string `json:"name"`
-		TotalSize  int    `json:"totalSize"`
-		Color      string `json:"color"`
-	}
 	statsmap := make(map[string]*LanguageStats)
 
 	for _, repo := range respData.Viewer.Repositories.Nodes {
@@ -71,5 +75,27 @@ func main() {
 		stats = append(stats, *stat)
 	}
 
-	fmt.Printf("Language Stats: %+v\n", stats)
+	fmt.Println(ForatLanguageStats(stats))
+}
+
+func ForatLanguageStats(stats []LanguageStats) string {
+	var total int
+	for _, stat := range stats {
+		total += stat.TotalSize
+	}
+
+	sort.Slice(stats, func(i, j int) bool {
+		return stats[i].TotalSize > stats[j].TotalSize
+	})
+
+	var builder strings.Builder
+	for _, stat := range stats {
+		const barLength = 20
+		percentage := float64(stat.TotalSize) / float64(total) * 100
+		filled := int(percentage / 100 * barLength)
+		sizeKB := float64(stat.TotalSize) / 1024
+		bar := strings.Repeat("█", filled) + strings.Repeat("░", barLength-filled)
+		fmt.Fprintf(&builder, "%-12s %s %5.1f%% (%6.1f KB)\n", stat.Name, bar, percentage, sizeKB)
+	}
+	return builder.String()
 }
