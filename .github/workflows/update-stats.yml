@@ -4,6 +4,7 @@ on:
   # schedule:
   #   - cron: '0 0 * * 0' # 毎週日曜日の午前0時に実行
   workflow_dispatch:
+  push: #テスト
 
 jobs:
   update-stats:
