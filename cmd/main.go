@@ -5,12 +5,13 @@ import (
 	"os"
 	"slices"
 	"sort"
+	"strings"
 
 	"github.com/Sawawa42/go-readme-stats/internal/github"
 	"github.com/Sawawa42/go-readme-stats/internal/gqlclient"
 	"github.com/Sawawa42/go-readme-stats/internal/option"
+	"github.com/Sawawa42/go-readme-stats/internal/svg"
 	"github.com/joho/godotenv"
-	"strings"
 )
 
 type LanguageStats struct {
@@ -20,11 +21,7 @@ type LanguageStats struct {
 }
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		fmt.Println("Error loading .env file:", err)
-		os.Exit(1)
-	}
+	_ = godotenv.Load()
 
 	opts, err := option.Parse(os.Args)
 	if err != nil {
@@ -75,18 +72,41 @@ func main() {
 		stats = append(stats, *stat)
 	}
 
-	fmt.Println(ForatLanguageStats(stats))
+	// サイズでソート（降順）
+	sort.Slice(stats, func(i, j int) bool {
+		return stats[i].TotalSize > stats[j].TotalSize
+	})
+
+	// テキスト出力（既存）
+	fmt.Println(FormatLanguageStats(stats))
+
+	// SVG出力
+	svgStats := make([]svg.LanguageStats, len(stats))
+	for i, stat := range stats {
+		svgStats[i] = svg.LanguageStats{
+			Name:      stat.Name,
+			TotalSize: stat.TotalSize,
+			Color:     stat.Color,
+		}
+	}
+
+	config := svg.DefaultConfig()
+	svgOutput := svg.Generate(svgStats, config)
+
+	// SVGファイルに書き込む
+	err = os.WriteFile("./generated/language-stats.svg", []byte(svgOutput), 0644)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "Error writing SVG file:", err)
+		os.Exit(1)
+	}
+	fmt.Fprintln(os.Stderr, "SVG file generated: language-stats.svg")
 }
 
-func ForatLanguageStats(stats []LanguageStats) string {
+func FormatLanguageStats(stats []LanguageStats) string {
 	var total int
 	for _, stat := range stats {
 		total += stat.TotalSize
 	}
-
-	sort.Slice(stats, func(i, j int) bool {
-		return stats[i].TotalSize > stats[j].TotalSize
-	})
 
 	var builder strings.Builder
 	for _, stat := range stats {
