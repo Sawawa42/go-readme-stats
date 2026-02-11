@@ -1,0 +1,45 @@
+<svg width="600" height="344" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="344" fill="#ffffff" rx="10"/>
+  <text x="20" y="40" font-family="'Segoe UI', Ubuntu, Sans-Serif" font-size="18" font-weight="bold" fill="#2f80ed">Language Statistics</text>
+
+  <text x="20" y="77" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">C</text>
+  <rect x="110" y="60" width="350" height="20" fill="#e1e4e8" rx="3"/>
+  <rect x="110" y="60" width="162" height="20" fill="#555555" rx="3"/>
+  <text x="470" y="77" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">46.4% (469.9 KB)</text>
+
+  <text x="20" y="110" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">C++</text>
+  <rect x="110" y="93" width="350" height="20" fill="#e1e4e8" rx="3"/>
+  <rect x="110" y="93" width="109" height="20" fill="#f34b7d" rx="3"/>
+  <text x="470" y="110" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">31.2% (316.2 KB)</text>
+
+  <text x="20" y="143" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Go</text>
+  <rect x="110" y="126" width="350" height="20" fill="#e1e4e8" rx="3"/>
+  <rect x="110" y="126" width="49" height="20" fill="#00ADD8" rx="3"/>
+  <text x="470" y="143" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">14.1% (142.4 KB)</text>
+
+  <text x="20" y="176" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Makefile</text>
+  <rect x="110" y="159" width="350" height="20" fill="#e1e4e8" rx="3"/>
+  <rect x="110" y="159" width="17" height="20" fill="#427819" rx="3"/>
+  <text x="470" y="176" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">5.0% (51.1 KB)</text>
+
+  <text x="20" y="209" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">TypeScript</text>
+  <rect x="110" y="192" width="350" height="20" fill="#e1e4e8" rx="3"/>
+  <rect x="110" y="192" width="5" height="20" fill="#3178c6" rx="3"/>
+  <text x="470" y="209" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">1.6% (16.5 KB)</text>
+
+  <text x="20" y="242" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">JavaScript</text>
+  <rect x="110" y="225" width="350" height="20" fill="#e1e4e8" rx="3"/>
+  <rect x="110" y="225" width="3" height="20" fill="#f1e05a" rx="3"/>
+  <text x="470" y="242" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">1.0% (9.8 KB)</text>
+
+  <text x="20" y="275" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Shell</text>
+  <rect x="110" y="258" width="350" height="20" fill="#e1e4e8" rx="3"/>
+  <rect x="110" y="258" width="1" height="20" fill="#89e051" rx="3"/>
+  <text x="470" y="275" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">0.4% (3.9 KB)</text>
+
+  <text x="20" y="308" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Dockerfile</text>
+  <rect x="110" y="291" width="350" height="20" fill="#e1e4e8" rx="3"/>
+  <rect x="110" y="291" width="1" height="20" fill="#384d54" rx="3"/>
+  <text x="470" y="308" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">0.3% (2.9 KB)</text>
+
+</svg>
