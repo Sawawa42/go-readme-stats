@@ -2,13 +2,13 @@ package app
 
 import (
 	"fmt"
-	"strings"
-	"os"
+	"github.com/Sawawa42/go-readme-stats/internal/model"
 	"github.com/Sawawa42/go-readme-stats/internal/option"
+	"github.com/Sawawa42/go-readme-stats/internal/service"
 	"github.com/Sawawa42/go-readme-stats/internal/svg"
 	"github.com/joho/godotenv"
-	"github.com/Sawawa42/go-readme-stats/internal/service"
-	"github.com/Sawawa42/go-readme-stats/internal/model"
+	"os"
+	"strings"
 )
 
 func Run() error {

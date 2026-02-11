@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"github.com/Sawawa42/go-readme-stats/internal/app"
+	"os"
 )
 
 func main() {

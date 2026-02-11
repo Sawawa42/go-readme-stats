@@ -3,6 +3,7 @@ package svg
 import (
 	"fmt"
 	"strings"
+
 	"github.com/Sawawa42/go-readme-stats/internal/model"
 )
 
@@ -38,7 +39,7 @@ func Generate(stats []model.LanguageStats, config SVGConfig) string {
 		totalSize += stat.TotalSize
 	}
 
-	// 最長の言語名の長さを計算（1文字あたり約8ピクセルと仮定）
+	// 最長の言語名の長さを計算 (1文字あたり約8ピクセルと仮定)
 	maxNameLength := 0
 	for _, stat := range stats {
 		if len(stat.Name) > maxNameLength {
@@ -48,7 +49,7 @@ func Generate(stats []model.LanguageStats, config SVGConfig) string {
 	nameWidth := maxNameLength * 8 + 10 // 余白を追加
 
 	titleHeight := 40
-	config.Height = titleHeight + len(stats) * (config.BarHeight + config.BarSpacing) + config.Padding * 2
+	config.Height = titleHeight + len(stats)*(config.BarHeight+config.BarSpacing) + config.Padding*2
 
 	var builder strings.Builder
 
@@ -69,10 +70,10 @@ func Generate(stats []model.LanguageStats, config SVGConfig) string {
 
 	y := titleHeight + config.Padding
 
-	// レイアウト計算: パーセンテージとサイズ表示に必要な幅（約120px）
+	// レイアウト計算: パーセンテージとサイズ表示に必要な幅 (約120px)
 	infoWidth := 120
 	barX := config.Padding + nameWidth
-	maxBarWidth := config.Width - config.Padding*2 - nameWidth - infoWidth
+	maxBarWidth := config.Width - config.Padding * 2 - nameWidth - infoWidth
 
 	// 各言語のバーを描画
 	for _, stat := range stats {
@@ -81,11 +82,11 @@ func Generate(stats []model.LanguageStats, config SVGConfig) string {
 		sizeKB := float64(stat.TotalSize) / 1024
 
 		fmt.Fprintf(&builder, `  <text x="%d" y="%d" font-family="'Segoe UI', Ubuntu, monospace" font-size="%d" fill="#333" font-weight="600">%s</text>`,
-			config.Padding, y+config.BarHeight/2+5, config.FontSize, stat.Name)
+			config.Padding, y + config.BarHeight / 2 + 5, config.FontSize, stat.Name)
 		builder.WriteString("\n")
 
 		fmt.Fprintf(&builder, `  <rect x="%d" y="%d" width="%d" height="%d" fill="#e1e4e8" rx="3"/>`,
-			barX, y, maxBarWidth, config.BarHeight-5)
+			barX, y, maxBarWidth, config.BarHeight - 5)
 		builder.WriteString("\n")
 
 		color := stat.Color
@@ -94,13 +95,13 @@ func Generate(stats []model.LanguageStats, config SVGConfig) string {
 		}
 		if barWidth > 0 {
 			fmt.Fprintf(&builder, `  <rect x="%d" y="%d" width="%d" height="%d" fill="%s" rx="3"/>`,
-				barX, y, barWidth, config.BarHeight-5, color)
+				barX, y, barWidth, config.BarHeight - 5, color)
 			builder.WriteString("\n")
 		}
 
 		textX := barX + maxBarWidth + 10
 		fmt.Fprintf(&builder, `  <text x="%d" y="%d" font-family="'Segoe UI', Ubuntu, monospace" font-size="%d" fill="#666">%.1f%% (%.1f KB)</text>`,
-			textX, y+config.BarHeight/2+5, config.FontSize-2, percentage, sizeKB)
+			textX, y + config.BarHeight / 2 + 5, config.FontSize - 2, percentage, sizeKB)
 		builder.WriteString("\n\n")
 
 		y += config.BarHeight + config.BarSpacing

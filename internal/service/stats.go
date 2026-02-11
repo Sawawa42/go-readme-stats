@@ -3,6 +3,7 @@ package service
 import (
 	"slices"
 	"sort"
+
 	"github.com/Sawawa42/go-readme-stats/internal/github"
 	"github.com/Sawawa42/go-readme-stats/internal/gqlclient"
 	"github.com/Sawawa42/go-readme-stats/internal/model"
@@ -54,7 +55,7 @@ func filterAndSortStats(statsmap map[string]*model.LanguageStats, excludePattern
 		stats = append(stats, *stat)
 	}
 
-	// サイズでソート（降順）
+	// サイズでソート(降順)
 	sort.Slice(stats, func(i, j int) bool {
 		return stats[i].TotalSize > stats[j].TotalSize
 	})
