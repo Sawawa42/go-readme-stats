@@ -12,13 +12,8 @@ import (
 	"github.com/Sawawa42/go-readme-stats/internal/option"
 	"github.com/Sawawa42/go-readme-stats/internal/svg"
 	"github.com/joho/godotenv"
+	"github.com/Sawawa42/go-readme-stats/internal/model"
 )
-
-type LanguageStats struct {
-	Name      string `json:"name"`
-	TotalSize int    `json:"totalSize"`
-	Color     string `json:"color"`
-}
 
 func main() {
 	_ = godotenv.Load()
@@ -48,13 +43,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	statsmap := make(map[string]*LanguageStats)
+	statsmap := make(map[string]*model.LanguageStats)
 
 	for _, repo := range respData.Viewer.Repositories.Nodes {
 		for _, langEdge := range repo.Languages.Edges {
 			langName := langEdge.Node.Name
 			if _, exists := statsmap[langName]; !exists {
-				statsmap[langName] = &LanguageStats{
+				statsmap[langName] = &model.LanguageStats{
 					Name:      langName,
 					TotalSize: 0,
 					Color:     langEdge.Node.Color,
@@ -64,7 +59,7 @@ func main() {
 		}
 	}
 
-	var stats []LanguageStats
+	var stats []model.LanguageStats
 	for _, stat := range statsmap {
 		if slices.Contains(opts.ExcludePatterns, stat.Name) {
 			continue
@@ -81,9 +76,9 @@ func main() {
 	fmt.Println(FormatLanguageStats(stats))
 
 	// SVG出力
-	svgStats := make([]svg.LanguageStats, len(stats))
+	svgStats := make([]model.LanguageStats, len(stats))
 	for i, stat := range stats {
-		svgStats[i] = svg.LanguageStats{
+		svgStats[i] = model.LanguageStats{
 			Name:      stat.Name,
 			TotalSize: stat.TotalSize,
 			Color:     stat.Color,
@@ -102,7 +97,7 @@ func main() {
 	fmt.Fprintln(os.Stderr, "SVG file generated: language-stats.svg")
 }
 
-func FormatLanguageStats(stats []LanguageStats) string {
+func FormatLanguageStats(stats []model.LanguageStats) string {
 	var total int
 	for _, stat := range stats {
 		total += stat.TotalSize

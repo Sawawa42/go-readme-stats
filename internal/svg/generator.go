@@ -3,13 +3,8 @@ package svg
 import (
 	"fmt"
 	"strings"
+	"github.com/Sawawa42/go-readme-stats/internal/model"
 )
-
-type LanguageStats struct {
-	Name      string
-	TotalSize int
-	Color     string
-}
 
 type SVGConfig struct {
 	Width      int
@@ -33,7 +28,7 @@ func DefaultConfig() SVGConfig {
 	}
 }
 
-func Generate(stats []LanguageStats, config SVGConfig) string {
+func Generate(stats []model.LanguageStats, config SVGConfig) string {
 	if len(stats) == 0 {
 		return ""
 	}
