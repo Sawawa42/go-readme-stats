@@ -4,18 +4,18 @@
 
   <text x="20" y="77" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">C</text>
   <rect x="110" y="60" width="350" height="20" fill="#e1e4e8" rx="3"/>
-  <rect x="110" y="60" width="159" height="20" fill="#555555" rx="3"/>
-  <text x="470" y="77" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">45.5% (469.9 KB)</text>
+  <rect x="110" y="60" width="158" height="20" fill="#555555" rx="3"/>
+  <text x="470" y="77" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">45.3% (469.9 KB)</text>
 
   <text x="20" y="110" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">C++</text>
   <rect x="110" y="93" width="350" height="20" fill="#e1e4e8" rx="3"/>
-  <rect x="110" y="93" width="107" height="20" fill="#f34b7d" rx="3"/>
-  <text x="470" y="110" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">30.6% (316.2 KB)</text>
+  <rect x="110" y="93" width="106" height="20" fill="#f34b7d" rx="3"/>
+  <text x="470" y="110" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">30.5% (316.2 KB)</text>
 
   <text x="20" y="143" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Go</text>
   <rect x="110" y="126" width="350" height="20" fill="#e1e4e8" rx="3"/>
-  <rect x="110" y="126" width="48" height="20" fill="#00ADD8" rx="3"/>
-  <text x="470" y="143" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">13.8% (142.4 KB)</text>
+  <rect x="110" y="126" width="49" height="20" fill="#00ADD8" rx="3"/>
+  <text x="470" y="143" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">14.1% (146.2 KB)</text>
 
   <text x="20" y="176" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Makefile</text>
   <rect x="110" y="159" width="350" height="20" fill="#e1e4e8" rx="3"/>
@@ -35,7 +35,7 @@
   <text x="20" y="275" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">JavaScript</text>
   <rect x="110" y="258" width="350" height="20" fill="#e1e4e8" rx="3"/>
   <rect x="110" y="258" width="3" height="20" fill="#f1e05a" rx="3"/>
-  <text x="470" y="275" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">1.0% (9.8 KB)</text>
+  <text x="470" y="275" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">0.9% (9.8 KB)</text>
 
   <text x="20" y="308" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Shell</text>
   <rect x="110" y="291" width="350" height="20" fill="#e1e4e8" rx="3"/>
