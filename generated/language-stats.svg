@@ -4,23 +4,23 @@
 
   <text x="20" y="77" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">C</text>
   <rect x="110" y="60" width="350" height="20" fill="#e1e4e8" rx="3"/>
-  <rect x="110" y="60" width="129" height="20" fill="#555555" rx="3"/>
-  <text x="470" y="77" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">37.0% (469.9 KB)</text>
+  <rect x="110" y="60" width="128" height="20" fill="#555555" rx="3"/>
+  <text x="470" y="77" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">36.7% (469.9 KB)</text>
 
   <text x="20" y="110" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">C++</text>
   <rect x="110" y="93" width="350" height="20" fill="#e1e4e8" rx="3"/>
-  <rect x="110" y="93" width="87" height="20" fill="#f34b7d" rx="3"/>
-  <text x="470" y="110" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">24.9% (316.2 KB)</text>
+  <rect x="110" y="93" width="86" height="20" fill="#f34b7d" rx="3"/>
+  <text x="470" y="110" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">24.7% (316.2 KB)</text>
 
   <text x="20" y="143" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Ruby</text>
   <rect x="110" y="126" width="350" height="20" fill="#e1e4e8" rx="3"/>
   <rect x="110" y="126" width="60" height="20" fill="#701516" rx="3"/>
-  <text x="470" y="143" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">17.4% (220.7 KB)</text>
+  <text x="470" y="143" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">17.2% (220.7 KB)</text>
 
   <text x="20" y="176" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Go</text>
   <rect x="110" y="159" width="350" height="20" fill="#e1e4e8" rx="3"/>
-  <rect x="110" y="159" width="40" height="20" fill="#00ADD8" rx="3"/>
-  <text x="470" y="176" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">11.6% (147.3 KB)</text>
+  <rect x="110" y="159" width="43" height="20" fill="#00ADD8" rx="3"/>
+  <text x="470" y="176" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">12.4% (159.2 KB)</text>
 
   <text x="20" y="209" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Makefile</text>
   <rect x="110" y="192" width="350" height="20" fill="#e1e4e8" rx="3"/>
