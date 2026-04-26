@@ -4,32 +4,32 @@
 
   <text x="20" y="77" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">C</text>
   <rect x="110" y="60" width="350" height="20" fill="#e1e4e8" rx="3"/>
-  <rect x="110" y="60" width="128" height="20" fill="#555555" rx="3"/>
-  <text x="470" y="77" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">36.7% (469.9 KB)</text>
+  <rect x="110" y="60" width="127" height="20" fill="#555555" rx="3"/>
+  <text x="470" y="77" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">36.3% (469.9 KB)</text>
 
   <text x="20" y="110" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">C++</text>
   <rect x="110" y="93" width="350" height="20" fill="#e1e4e8" rx="3"/>
-  <rect x="110" y="93" width="86" height="20" fill="#f34b7d" rx="3"/>
-  <text x="470" y="110" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">24.7% (316.2 KB)</text>
+  <rect x="110" y="93" width="85" height="20" fill="#f34b7d" rx="3"/>
+  <text x="470" y="110" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">24.4% (316.2 KB)</text>
 
   <text x="20" y="143" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Ruby</text>
   <rect x="110" y="126" width="350" height="20" fill="#e1e4e8" rx="3"/>
-  <rect x="110" y="126" width="60" height="20" fill="#701516" rx="3"/>
-  <text x="470" y="143" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">17.2% (220.7 KB)</text>
+  <rect x="110" y="126" width="59" height="20" fill="#701516" rx="3"/>
+  <text x="470" y="143" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">17.1% (220.7 KB)</text>
 
   <text x="20" y="176" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Go</text>
   <rect x="110" y="159" width="350" height="20" fill="#e1e4e8" rx="3"/>
-  <rect x="110" y="159" width="43" height="20" fill="#00ADD8" rx="3"/>
-  <text x="470" y="176" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">12.4% (159.2 KB)</text>
+  <rect x="110" y="159" width="46" height="20" fill="#00ADD8" rx="3"/>
+  <text x="470" y="176" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">13.2% (170.7 KB)</text>
 
   <text x="20" y="209" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Makefile</text>
   <rect x="110" y="192" width="350" height="20" fill="#e1e4e8" rx="3"/>
   <rect x="110" y="192" width="14" height="20" fill="#427819" rx="3"/>
-  <text x="470" y="209" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">4.2% (53.7 KB)</text>
+  <text x="470" y="209" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">4.1% (53.7 KB)</text>
 
   <text x="20" y="242" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Astro</text>
   <rect x="110" y="225" width="350" height="20" fill="#e1e4e8" rx="3"/>
-  <rect x="110" y="225" width="7" height="20" fill="#ff5a03" rx="3"/>
+  <rect x="110" y="225" width="6" height="20" fill="#ff5a03" rx="3"/>
   <text x="470" y="242" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">2.0% (25.8 KB)</text>
 
   <text x="20" y="275" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">TypeScript</text>
@@ -45,7 +45,7 @@
   <text x="20" y="341" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Shell</text>
   <rect x="110" y="324" width="350" height="20" fill="#e1e4e8" rx="3"/>
   <rect x="110" y="324" width="1" height="20" fill="#89e051" rx="3"/>
-  <text x="470" y="341" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">0.5% (5.8 KB)</text>
+  <text x="470" y="341" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">0.4% (5.8 KB)</text>
 
   <text x="20" y="374" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Svelte</text>
   <rect x="110" y="357" width="350" height="20" fill="#e1e4e8" rx="3"/>
