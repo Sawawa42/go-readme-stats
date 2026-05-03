@@ -4,8 +4,8 @@
 
   <text x="20" y="77" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">C</text>
   <rect x="110" y="60" width="350" height="20" fill="#e1e4e8" rx="3"/>
-  <rect x="110" y="60" width="127" height="20" fill="#555555" rx="3"/>
-  <text x="470" y="77" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">36.3% (469.9 KB)</text>
+  <rect x="110" y="60" width="126" height="20" fill="#555555" rx="3"/>
+  <text x="470" y="77" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">36.2% (469.9 KB)</text>
 
   <text x="20" y="110" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">C++</text>
   <rect x="110" y="93" width="350" height="20" fill="#e1e4e8" rx="3"/>
@@ -15,12 +15,12 @@
   <text x="20" y="143" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Ruby</text>
   <rect x="110" y="126" width="350" height="20" fill="#e1e4e8" rx="3"/>
   <rect x="110" y="126" width="59" height="20" fill="#701516" rx="3"/>
-  <text x="470" y="143" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">17.1% (220.7 KB)</text>
+  <text x="470" y="143" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">17.0% (220.7 KB)</text>
 
   <text x="20" y="176" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Go</text>
   <rect x="110" y="159" width="350" height="20" fill="#e1e4e8" rx="3"/>
-  <rect x="110" y="159" width="46" height="20" fill="#00ADD8" rx="3"/>
-  <text x="470" y="176" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">13.2% (170.7 KB)</text>
+  <rect x="110" y="159" width="47" height="20" fill="#00ADD8" rx="3"/>
+  <text x="470" y="176" font-family="'Segoe UI', Ubuntu, monospace" font-size="12" fill="#666">13.5% (174.9 KB)</text>
 
   <text x="20" y="209" font-family="'Segoe UI', Ubuntu, monospace" font-size="14" fill="#333" font-weight="600">Makefile</text>
   <rect x="110" y="192" width="350" height="20" fill="#e1e4e8" rx="3"/>
