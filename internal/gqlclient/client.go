@@ -10,7 +10,8 @@ import (
 )
 
 type GraphQLRequest struct {
-	Query string `json:"query"`
+	Query     string         `json:"query"`
+	Variables map[string]any `json:"variables,omitempty"`
 }
 
 type GraphQLResponse struct {
@@ -37,8 +38,8 @@ func NewClient(endpoint string) *Client {
 	}
 }
 
-func (c *Client) NewRequest(query string) (*http.Request, error) {
-	gqlReq := GraphQLRequest{Query: query}
+func (c *Client) NewRequest(query string, variables map[string]any) (*http.Request, error) {
+	gqlReq := GraphQLRequest{Query: query, Variables: variables}
 	body, err := json.Marshal(gqlReq)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal query: %w", err)
