@@ -11,26 +11,94 @@ import (
 
 func FetchAndBuildStats(excludePatterns []string) ([]model.LanguageStats, error) {
 	client := gqlclient.NewClient("https://api.github.com/graphql")
-	req, err := client.NewRequest(github.RepositoriesQuery)
+
+	repos, err := fetchAllRepos(client)
 	if err != nil {
 		return nil, err
 	}
 
-	var respData github.RepositoriesResponse
-	err = client.Do(req, &respData)
-	if err != nil {
-		return nil, err
-	}
-
-	statsmap := aggregateStats(respData)
+	statsmap := aggregateStats(repos)
 	stats := filterAndSortStats(statsmap, excludePatterns)
 	return stats, nil
 }
 
-func aggregateStats(respData github.RepositoriesResponse) map[string]*model.LanguageStats {
+func fetchAllRepos(client *gqlclient.Client) ([]github.RepoNode, error) {
+	seen := make(map[string]struct{})
+	var all []github.RepoNode
+
+	ownerRepos, err := fetchOwnerRepos(client)
+	if err != nil {
+		return nil, err
+	}
+	for _, r := range ownerRepos {
+		if _, ok := seen[r.NameWithOwner]; ok {
+			continue
+		}
+		seen[r.NameWithOwner] = struct{}{}
+		all = append(all, r)
+	}
+
+	contributedRepos, err := fetchContributedRepos(client)
+	if err != nil {
+		return nil, err
+	}
+	for _, r := range contributedRepos {
+		if _, ok := seen[r.NameWithOwner]; ok {
+			continue
+		}
+		seen[r.NameWithOwner] = struct{}{}
+		all = append(all, r)
+	}
+
+	return all, nil
+}
+
+func fetchOwnerRepos(client *gqlclient.Client) ([]github.RepoNode, error) {
+	var repos []github.RepoNode
+	var cursor any = nil
+	for {
+		req, err := client.NewRequest(github.OwnerRepositoriesQuery, map[string]any{"cursor": cursor})
+		if err != nil {
+			return nil, err
+		}
+		var resp github.OwnerRepositoriesResponse
+		if err := client.Do(req, &resp); err != nil {
+			return nil, err
+		}
+		repos = append(repos, resp.Viewer.Repositories.Nodes...)
+		if !resp.Viewer.Repositories.PageInfo.HasNextPage {
+			break
+		}
+		cursor = resp.Viewer.Repositories.PageInfo.EndCursor
+	}
+	return repos, nil
+}
+
+func fetchContributedRepos(client *gqlclient.Client) ([]github.RepoNode, error) {
+	var repos []github.RepoNode
+	var cursor any = nil
+	for {
+		req, err := client.NewRequest(github.ContributedRepositoriesQuery, map[string]any{"cursor": cursor})
+		if err != nil {
+			return nil, err
+		}
+		var resp github.ContributedRepositoriesResponse
+		if err := client.Do(req, &resp); err != nil {
+			return nil, err
+		}
+		repos = append(repos, resp.Viewer.RepositoriesContributedTo.Nodes...)
+		if !resp.Viewer.RepositoriesContributedTo.PageInfo.HasNextPage {
+			break
+		}
+		cursor = resp.Viewer.RepositoriesContributedTo.PageInfo.EndCursor
+	}
+	return repos, nil
+}
+
+func aggregateStats(repos []github.RepoNode) map[string]*model.LanguageStats {
 	statsmap := make(map[string]*model.LanguageStats)
 
-	for _, repo := range respData.Viewer.Repositories.Nodes {
+	for _, repo := range repos {
 		for _, langEdge := range repo.Languages.Edges {
 			langName := langEdge.Node.Name
 			if _, exists := statsmap[langName]; !exists {
