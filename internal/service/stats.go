@@ -9,7 +9,7 @@ import (
 	"github.com/Sawawa42/go-readme-stats/internal/model"
 )
 
-func FetchAndBuildStats(excludePatterns []string) ([]model.LanguageStats, error) {
+func FetchAndBuildStats(includePatterns []string) ([]model.LanguageStats, error) {
 	client := gqlclient.NewClient("https://api.github.com/graphql")
 
 	repos, err := fetchAllRepos(client)
@@ -18,7 +18,7 @@ func FetchAndBuildStats(excludePatterns []string) ([]model.LanguageStats, error)
 	}
 
 	statsmap := aggregateStats(repos)
-	stats := filterAndSortStats(statsmap, excludePatterns)
+	stats := filterAndSortStats(statsmap, includePatterns)
 	return stats, nil
 }
 
@@ -114,10 +114,10 @@ func aggregateStats(repos []github.RepoNode) map[string]*model.LanguageStats {
 	return statsmap
 }
 
-func filterAndSortStats(statsmap map[string]*model.LanguageStats, excludePatterns []string) []model.LanguageStats {
+func filterAndSortStats(statsmap map[string]*model.LanguageStats, includePatterns []string) []model.LanguageStats {
 	var stats []model.LanguageStats
 	for _, stat := range statsmap {
-		if slices.Contains(excludePatterns, stat.Name) {
+		if len(includePatterns) > 0 && !slices.Contains(includePatterns, stat.Name) {
 			continue
 		}
 		stats = append(stats, *stat)
