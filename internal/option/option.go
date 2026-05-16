@@ -9,14 +9,14 @@ import (
 )
 
 type Options struct {
-	Exclude         string   // -x or --exclude
-	ExcludePatterns []string // -x or --excludeで指定されたパターンをカンマで分割して格納
+	Include         string   // -i or --include
+	IncludePatterns []string // -i or --includeで指定されたパターンをカンマで分割して格納
 	Help            bool     // -h or --help
 	FlagSet         *flag.FlagSet
 }
 
 var flagUsages = map[string]string{
-	"x": "Exclude files matching the pattern",
+	"i": "Include only languages matching the pattern",
 	"h": "Show help information",
 }
 
@@ -25,8 +25,8 @@ func Parse(args []string) (*Options, error) {
 
 	flagSet := flag.NewFlagSet(args[0], flag.ExitOnError)
 
-	flagSet.StringVar(&opts.Exclude, "x", "", "x")
-	flagSet.StringVar(&opts.Exclude, "exclude", "", "x")
+	flagSet.StringVar(&opts.Include, "i", "", "i")
+	flagSet.StringVar(&opts.Include, "include", "", "i")
 	flagSet.BoolVar(&opts.Help, "h", false, "h")
 	flagSet.BoolVar(&opts.Help, "help", false, "h")
 
@@ -41,8 +41,8 @@ func Parse(args []string) (*Options, error) {
 		return nil, err
 	}
 
-	if opts.Exclude != "" {
-		opts.ExcludePatterns = strings.Split(opts.Exclude, ",")
+	if opts.Include != "" {
+		opts.IncludePatterns = strings.Split(opts.Include, ",")
 	}
 	opts.FlagSet = flagSet
 

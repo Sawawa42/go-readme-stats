@@ -24,7 +24,7 @@ func Run() error {
 		return nil
 	}
 
-	stats, err := service.FetchAndBuildStats(opts.ExcludePatterns)
+	stats, err := service.FetchAndBuildStats(opts.IncludePatterns)
 	if err != nil {
 		return fmt.Errorf("error fetching and building stats: %w", err)
 	}
