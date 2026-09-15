@@ -20,21 +20,11 @@ type PageInfo struct {
 	EndCursor   string `json:"endCursor"`
 }
 
-type OwnerRepositoriesResponse struct {
+type RepositoriesResponse struct {
 	Viewer struct {
-		Login        string `json:"login"`
 		Repositories struct {
 			Nodes    []RepoNode `json:"nodes"`
 			PageInfo PageInfo   `json:"pageInfo"`
 		} `json:"repositories"`
-	} `json:"viewer"`
-}
-
-type ContributedRepositoriesResponse struct {
-	Viewer struct {
-		RepositoriesContributedTo struct {
-			Nodes    []RepoNode `json:"nodes"`
-			PageInfo PageInfo   `json:"pageInfo"`
-		} `json:"repositoriesContributedTo"`
 	} `json:"viewer"`
 }

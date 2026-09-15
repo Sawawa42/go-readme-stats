@@ -3,6 +3,7 @@ package svg
 import (
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/Sawawa42/go-readme-stats/internal/model"
 )
@@ -15,6 +16,7 @@ type SVGConfig struct {
 	BarSpacing int
 	FontSize   int
 	Title      string
+	UpdatedAt  time.Time // ゼロ値なら更新日を表示しない
 }
 
 func DefaultConfig() SVGConfig {
@@ -25,7 +27,7 @@ func DefaultConfig() SVGConfig {
 		BarHeight:  25,
 		BarSpacing: 8,
 		FontSize:   14,
-		Title:      "Language Statistics",
+		Title:      "Most Used Languages",
 	}
 }
 
@@ -34,9 +36,9 @@ func Generate(stats []model.LanguageStats, config SVGConfig) string {
 		return ""
 	}
 
-	var totalSize int
+	var maxPercentage float64
 	for _, stat := range stats {
-		totalSize += stat.TotalSize
+		maxPercentage = max(maxPercentage, stat.Percentage)
 	}
 
 	// 最長の言語名の長さを計算 (1文字あたり約8ピクセルと仮定)
@@ -66,20 +68,31 @@ func Generate(stats []model.LanguageStats, config SVGConfig) string {
 	// <text> タイトル
 	fmt.Fprintf(&builder, `  <text x="%d" y="%d" font-family="'Segoe UI', Ubuntu, Sans-Serif" font-size="18" font-weight="bold" fill="#2f80ed">%s</text>`,
 		config.Padding, config.Padding + 20, config.Title)
-	builder.WriteString("\n\n")
+	builder.WriteString("\n")
+
+	// <text> 更新日 (タイトル行の右端)
+	if !config.UpdatedAt.IsZero() {
+		fmt.Fprintf(&builder, `  <text x="%d" y="%d" text-anchor="end" font-family="'Segoe UI', Ubuntu, Sans-Serif" font-size="11" fill="#888">Updated %s</text>`,
+			config.Width - config.Padding, config.Padding + 20, config.UpdatedAt.Format("2006-01-02 UTC"))
+		builder.WriteString("\n")
+	}
+	builder.WriteString("\n")
 
 	y := titleHeight + config.Padding
 
-	// レイアウト計算: パーセンテージとサイズ表示に必要な幅 (約120px)
-	infoWidth := 120
+	// レイアウト計算: パーセンテージ表示に必要な幅
+	// monospaceフォールバック時 "100.0%" で約45px + バーとの間隔
+	infoWidth := 60
 	barX := config.Padding + nameWidth
 	maxBarWidth := config.Width - config.Padding * 2 - nameWidth - infoWidth
 
 	// 各言語のバーを描画
 	for _, stat := range stats {
-		percentage := float64(stat.TotalSize) / float64(totalSize) * 100
-		barWidth := int(float64(maxBarWidth) * percentage / 100)
-		sizeKB := float64(stat.TotalSize) / 1024
+		// 最大の言語をバーの最大幅とし、他はその比率で描画する
+		barWidth := 0
+		if maxPercentage > 0 {
+			barWidth = int(float64(maxBarWidth) * stat.Percentage / maxPercentage)
+		}
 
 		fmt.Fprintf(&builder, `  <text x="%d" y="%d" font-family="'Segoe UI', Ubuntu, monospace" font-size="%d" fill="#333" font-weight="600">%s</text>`,
 			config.Padding, y + config.BarHeight / 2 + 5, config.FontSize, stat.Name)
@@ -99,9 +112,9 @@ func Generate(stats []model.LanguageStats, config SVGConfig) string {
 			builder.WriteString("\n")
 		}
 
-		textX := barX + maxBarWidth + 10
-		fmt.Fprintf(&builder, `  <text x="%d" y="%d" font-family="'Segoe UI', Ubuntu, monospace" font-size="%d" fill="#666">%.1f%% (%.1f KB)</text>`,
-			textX, y + config.BarHeight / 2 + 5, config.FontSize - 2, percentage, sizeKB)
+		textX := config.Width - config.Padding
+		fmt.Fprintf(&builder, `  <text x="%d" y="%d" text-anchor="end" font-family="'Segoe UI', Ubuntu, monospace" font-size="%d" fill="#666">%.1f%%</text>`,
+			textX, y + config.BarHeight / 2 + 5, config.FontSize - 2, stat.Percentage)
 		builder.WriteString("\n\n")
 
 		y += config.BarHeight + config.BarSpacing
